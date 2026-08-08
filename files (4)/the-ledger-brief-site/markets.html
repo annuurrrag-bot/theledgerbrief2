@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markets — The Ledger Brief</title>
+<meta name="description" content="Major indices, market movers, commodities, currencies, and treasury yields, with weekly context from The Ledger Brief.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="assets/logo/logo-app-icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#111111">
+<!-- Replace with your production domain before launch -->
+<link rel="canonical" href="https://www.theledgerbrief.com/markets.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Ledger Brief">
+<meta property="og:title" content="Markets — The Ledger Brief">
+<meta property="og:description" content="Major indices, market movers, commodities, currencies, and treasury yields, with weekly context from The Ledger Brief.">
+<meta property="og:url" content="https://www.theledgerbrief.com/markets.html">
+<!-- Add a real 1200x630 social preview image before launch -->
+<meta property="og:image" content="https://www.theledgerbrief.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Markets — The Ledger Brief">
+<meta name="twitter:description" content="Major indices, market movers, commodities, currencies, and treasury yields, with weekly context from The Ledger Brief.">
+<meta name="twitter:image" content="https://www.theledgerbrief.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Ledger Brief",
+  "description": "Independent investment research publication delivering weekly market intelligence and long-term investment ideas.",
+  "url": "https://www.theledgerbrief.com/"
+}
+</script>
+<style>
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --bg:#FFFFFF;
+    --bg-alt:#FAFAF9;
+    --ink:#111111;
+    --ink-soft:#5F6368;
+    --border:#E8E8E8;
+    --accent:#8B1E2D;
+    --accent-dark:#6E1723;
+    --green:#1B5E3F;
+    --footer-bg:#111111;
+    --footer-text:#EDEDED;
+    --footer-soft:#9A9A9A;
+
+    --serif:'Source Serif 4', Georgia, serif;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --container: 1200px;
+    --gutter: clamp(24px, 5vw, 80px);
+
+    --ease: cubic-bezier(.4,0,.2,1);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+
+  .wrap{
+    max-width:var(--container);
+    margin:0 auto;
+    padding-left:var(--gutter);
+    padding-right:var(--gutter);
+  }
+
+  h1,h2,h3,h4{
+    font-family:var(--serif);
+    font-weight:600;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:500;
+  }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  .skip-link{
+    position:absolute; left:-999px; top:0;
+    background:var(--ink); color:#fff; padding:12px 20px;
+    z-index:200; border-radius:2px;
+  }
+  .skip-link:focus{left:16px; top:16px;}
+
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+  footer a:focus-visible, footer button:focus-visible, footer input:focus-visible,
+  .ticker-bar a:focus-visible{
+    outline-color:#fff;
+  }
+
+  /* ============ TICKER ============ */
+  .ticker-bar{
+    background:var(--ink);
+    color:#fff;
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid #222;
+  }
+  .ticker-track{
+    display:inline-flex;
+    align-items:center;
+    animation: scroll-ticker 42s linear infinite;
+    padding:9px 0;
+  }
+  .ticker-bar:hover .ticker-track{ animation-play-state: paused; }
+  @keyframes scroll-ticker{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  .ticker-item{
+    font-family:var(--sans);
+    font-size:12px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:0 26px;
+    border-right:1px solid rgba(255,255,255,0.09);
+    font-variant-numeric:tabular-nums;
+  }
+  .ticker-name{ color:#9A9A9A; letter-spacing:0.06em; }
+  .ticker-val{ color:#F2F2F2; font-weight:500; letter-spacing:0.01em; }
+  .up{ color:#7FAE8F; }
+  .down{ color:#B98790; }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation:none; }
+    .ticker-bar{ overflow-x:auto; }
+  }
+
+  /* ============ NAV ============ */
+  .site-nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .logo{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    letter-spacing:0.01em;
+    display:inline-flex; align-items:center;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:40px;
+    list-style:none; margin:0; padding:0;
+  }
+  .nav-links a{
+    font-size:14px; font-weight:500; color:var(--ink);
+    position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--accent);
+    transition:width .3s var(--ease);
+  }
+  .nav-links a:hover::after, .nav-links a.active::after{ width:100%; }
+  .nav-links a.active{ color:var(--accent); }
+  .nav-right{ display:flex; align-items:center; gap:28px; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:600;
+    padding:15px 30px;
+    border-radius:8px;
+    border:1px solid var(--accent);
+    transition: background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease), opacity .3s var(--ease);
+    white-space:nowrap;
+  }
+  .btn-solid{ background:var(--accent); color:#fff; box-shadow:0 1px 2px rgba(17,17,17,0.04); }
+  .btn-solid:hover{
+    background:var(--accent-dark); border-color:var(--accent-dark);
+    box-shadow:0 12px 28px -12px rgba(139,30,45,0.45);
+    transform:translateY(-1px);
+  }
+  .btn-outline{ background:transparent; color:var(--ink); border-color:var(--border); }
+  .btn-outline:hover{ border-color:var(--ink); }
+  .btn-sm{ padding:10px 20px; font-size:13px; border-radius:8px; }
+
+  .btn:disabled, .btn[aria-disabled="true"]{
+    opacity:0.55; cursor:not-allowed; transform:none !important; box-shadow:none !important;
+  }
+  .btn-submit{ display:inline-flex; align-items:center; justify-content:center; }
+  .btn-submit .btn-spinner{
+    width:13px; height:13px; margin-right:9px; border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.4); border-top-color:#fff;
+    display:none; animation:btn-spin .7s linear infinite; flex-shrink:0;
+  }
+  .btn-submit.is-loading .btn-spinner{ display:inline-block; }
+  .btn-submit.is-loading, .btn-submit:disabled{
+    opacity:0.8; cursor:progress; pointer-events:none;
+  }
+  @keyframes btn-spin{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){
+    .btn-submit .btn-spinner{ animation-duration:1.4s; }
+  }
+
+  .nav-toggle{ display:none; background:none; border:none; padding:6px; }
+  .nav-toggle svg{ stroke:var(--ink); }
+
+  .mobile-panel{
+    display:none;
+    position:fixed; inset:0; top:0;
+    background:var(--bg);
+    z-index:150;
+    padding:24px var(--gutter);
+    flex-direction:column;
+  }
+  .mobile-panel.open{ display:flex; }
+  .mobile-panel-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; }
+  .mobile-panel a{
+    font-family:var(--serif); font-size:28px; padding:16px 0;
+    border-bottom:1px solid var(--border);
+  }
+
+  @media (max-width:900px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding-top:clamp(64px, 10vw, 138px);
+    padding-bottom:clamp(64px, 10vw, 116px);
+    border-bottom:1px solid var(--border);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap:clamp(32px,6vw,90px);
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(52px, 7.4vw, 96px);
+    line-height:0.98;
+    letter-spacing:-0.015em;
+    margin-top:24px;
+  }
+  .hero h1 .line2{
+    display:block;
+    margin-top:0.14em;
+  }
+  .hero-sub{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:clamp(18px,2.1vw,23px);
+    color:var(--ink);
+    margin-top:28px;
+    max-width:46ch;
+  }
+  .hero-copy{
+    color:var(--ink-soft);
+    font-size:16.5px;
+    max-width:44ch;
+    margin-top:20px;
+  }
+  .hero-ctas{
+    display:flex; align-items:center; gap:22px; margin-top:36px; flex-wrap:wrap;
+  }
+  .link-underline{
+    font-size:14px; font-weight:600; position:relative; padding-bottom:3px;
+    border-bottom:1px solid var(--ink);
+    transition:border-color .3s var(--ease), color .3s var(--ease);
+  }
+  .link-underline:hover{ color:var(--accent); border-color:var(--accent); }
+  .hero-meta{
+    margin-top:30px; font-size:13px; color:var(--ink-soft);
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  }
+  .hero-meta .dot{ width:3px; height:3px; border-radius:50%; background:var(--ink-soft); display:inline-block; }
+
+  /* hero visualization */
+  .hero-viz{ position:relative; }
+  .hero-viz svg{ width:100%; height:auto; display:block; }
+  .viz-caption{
+    font-family:var(--sans); font-size:11px; color:var(--ink-soft);
+    letter-spacing:0.05em; margin-top:14px; text-align:right;
+  }
+  .viz-compact{ display:none; }
+  @media (max-width:640px){
+    .viz-full{ display:none; }
+    .viz-compact{ display:block; }
+  }
+
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-viz{ order:-1; max-width:420px; margin:0 auto 8px; }
+  }
+
+  /* ============ SOCIAL PROOF ============ */
+  .stats-band{
+    border-bottom:1px solid var(--border);
+    padding:46px 0;
+  }
+  .stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    text-align:center;
+  }
+  .stat + .stat{ border-left:1px solid var(--border); }
+  .stat-num{
+    font-family:var(--sans); font-size:clamp(22px,2.6vw,30px); font-weight:500;
+    color:var(--ink); letter-spacing:-0.01em;
+  }
+  .stat-label{
+    font-size:11.5px; color:var(--ink-soft); letter-spacing:0.09em; margin-top:8px;
+    text-transform:uppercase; font-weight:500;
+  }
+  @media (max-width:700px){
+    .stats-grid{ grid-template-columns:repeat(2,1fr); row-gap:28px; }
+    .stat:nth-child(3){ border-left:none; }
+    .stat:nth-child(2n){ border-left:1px solid var(--border); }
+  }
+
+  /* ============ SECTION SHELL ============ */
+  section{ padding-top:clamp(64px,8vw,108px); padding-bottom:clamp(64px,8vw,108px); }
+  .section-border{ border-bottom:1px solid var(--border); }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:48px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(28px,3.4vw,40px); margin-top:10px; }
+  .section-lede{ color:var(--ink-soft); max-width:48ch; margin-top:10px; }
+
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ============ FEATURED RESEARCH ============ */
+  .research-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+  }
+  .research-card{
+    background:var(--bg); padding:36px 32px;
+    display:flex; flex-direction:column; gap:16px;
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .research-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 32px -20px rgba(17,17,17,0.24);
+    z-index:2;
+  }
+  .research-card h3{
+    font-size:21px; line-height:1.3; margin-top:2px;
+  }
+  .research-card p{ color:var(--ink-soft); font-size:14.5px; margin:0; flex-grow:1; }
+  .card-meta{
+    font-family:var(--sans); font-size:11.5px; color:var(--ink-soft);
+    display:flex; gap:10px; align-items:center; margin-top:auto; padding-top:16px;
+    border-top:1px solid var(--border);
+  }
+  @media (max-width:900px){ .research-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:620px){ .research-grid{ grid-template-columns:1fr; } }
+
+  /* ============ WHY READ ============ */
+  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:56px; }
+  .why-item .icon{ width:34px; height:34px; margin-bottom:22px; }
+  .why-item h3{ font-size:21px; margin-bottom:12px; }
+  .why-item p{ color:var(--ink-soft); font-size:15px; margin:0; }
+  @media (max-width:800px){ .why-grid{ grid-template-columns:1fr; gap:40px; } }
+
+  /* ============ ARCHIVE / LATEST ISSUES ============ */
+  .issue-row{
+    display:grid;
+    grid-template-columns:110px 1fr auto;
+    gap:32px;
+    align-items:baseline;
+    padding:32px 0;
+    border-top:1px solid var(--border);
+    transition:padding-left .3s var(--ease);
+  }
+  .issue-row:last-child{ border-bottom:1px solid var(--border); }
+  .issue-row:hover{ padding-left:10px; }
+  .issue-no{ font-family:var(--sans); color:var(--accent); font-size:13px; letter-spacing:0.03em; }
+  .issue-body h3{ font-size:23px; line-height:1.3; margin-bottom:8px; }
+  .issue-body p{ color:var(--ink-soft); font-size:14.5px; margin:0; max-width:60ch; }
+  .issue-date{ font-family:var(--sans); font-size:12.5px; color:var(--ink-soft); white-space:nowrap; }
+  @media (max-width:700px){
+    .issue-row{ grid-template-columns:1fr; gap:6px; }
+    .issue-date{ order:3; }
+  }
+
+  /* ============ NEWSLETTER MID ============ */
+  .signup-band{
+    background:var(--bg-alt);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .signup-inner{ text-align:center; max-width:640px; margin:0 auto; }
+  .signup-inner h2{ font-size:clamp(26px,3.6vw,38px); }
+  .signup-inner p{ color:var(--ink-soft); margin-top:14px; }
+  .signup-form{
+    display:flex; gap:0; margin-top:34px;
+    border:1px solid var(--border); border-radius:8px; overflow:hidden;
+    background:var(--bg); transition:border-color .25s var(--ease);
+  }
+  .signup-form:focus-within{ border-color:var(--ink); }
+  .signup-form input{
+    flex:1; border:none; padding:16px 20px; font-size:15px;
+    font-family:var(--sans); color:var(--ink); background:transparent;
+  }
+  .signup-form input:focus{ outline:none; }
+  .signup-form button{
+    border:none; background:var(--accent); color:#fff; padding:0 28px;
+    font-weight:600; font-size:14px; transition:background .3s var(--ease);
+  }
+  .signup-form button:hover{ background:var(--accent-dark); }
+  .signup-note{ font-size:12.5px; color:var(--ink-soft); margin-top:16px; }
+  @media (max-width:560px){
+    .signup-form{ flex-direction:column; border-radius:8px; }
+    .signup-form button{ padding:15px; }
+  }
+  .form-msg{ font-size:13px; margin-top:14px; display:none; }
+  .form-msg.show{ display:block; }
+  .form-msg.is-success{ color:var(--green); }
+  .form-msg.is-error{ color:var(--accent); }
+  .signup-form.has-error{ border-color:var(--accent); }
+  .signup-form input[aria-invalid="true"]{ color:var(--accent); }
+
+  /* ============ ABOUT ============ */
+  .about-grid{
+    display:grid; grid-template-columns:280px 1fr; gap:64px;
+  }
+  .about-grid p{ color:var(--ink-soft); margin:0 0 18px; max-width:64ch; }
+  .about-grid p:last-child{ margin-bottom:0; }
+  .about-grid strong{ color:var(--ink); font-weight:600; }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; gap:20px; } }
+
+  /* ============ TESTIMONIALS ============ */
+  .mobile-panel a.subscribe-link{ color:var(--accent); }
+  .about-heading{ font-size:32px; margin-top:10px; }
+  .eyebrow-center{ justify-content:center; display:flex; }
+  .testi-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-top:40px; }
+  blockquote{
+    margin:0; font-family:var(--serif); font-style:italic;
+    font-size:clamp(20px,2.4vw,25px); line-height:1.5; color:var(--ink);
+    position:relative; padding-left:22px;
+    border-left:1px solid var(--border);
+  }
+  .testi-attr{
+    margin-top:22px; font-family:var(--sans); font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft); font-style:normal;
+  }
+  @media (max-width:800px){ .testi-grid{ grid-template-columns:1fr; gap:44px; } }
+
+  /* ============ FOOTER ============ */
+  footer{ background:var(--footer-bg); color:var(--footer-text); }
+  .footer-top{
+    display:grid; grid-template-columns:1.4fr repeat(3,0.8fr) 1.3fr;
+    gap:40px; padding-top:96px; padding-bottom:72px;
+    border-bottom:1px solid rgba(255,255,255,0.14);
+  }
+  .footer-brand .logo{ color:#fff; font-size:22px; letter-spacing:0.015em; }
+  .footer-brand p{ color:var(--footer-soft); font-size:14px; margin-top:16px; max-width:34ch; }
+  .footer-col h4{
+    font-family:var(--sans); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--footer-soft); font-weight:500; margin-bottom:16px;
+  }
+  .footer-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .footer-col a{ font-size:14px; color:var(--footer-text); }
+  .footer-col a:hover{ color:var(--accent); }
+  .footer-signup input{
+    width:100%; padding:13px 15px; border:1px solid rgba(255,255,255,0.2);
+    background:transparent; color:#fff; font-size:14px; border-radius:8px; margin-bottom:10px;
+    transition:border-color .25s var(--ease);
+  }
+  .footer-signup input:focus{ outline:none; border-color:rgba(255,255,255,0.5); }
+  .footer-signup input::placeholder{ color:#8a8a8a; }
+  .footer-signup button{ width:100%; }
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:30px 0; font-size:12.5px; color:var(--footer-soft); flex-wrap:wrap; gap:12px;
+  }
+  .footer-social{ display:flex; gap:18px; }
+  .footer-signup .form-msg.is-success{ color:#8FD4A8; }
+  .footer-signup .form-msg.is-error{ color:#E39CA6; }
+  .footer-social a{ color:var(--footer-soft); }
+  .footer-social a:hover{ color:#fff; }
+  @media (max-width:900px){
+    .footer-top{ grid-template-columns:1fr 1fr; }
+    .footer-brand{ grid-column:1 / -1; }
+    .footer-signup{ grid-column:1 / -1; max-width:360px; }
+  }
+  @media (max-width:520px){
+    .footer-top{ grid-template-columns:1fr; gap:36px; }
+    .footer-signup{ max-width:100%; }
+  }
+</style>
+
+
+  /* ============ PERSISTENT TICKER (all pages) ============ */
+  .site-ticker{ background:var(--ink); overflow:hidden; }
+  .site-ticker .ticker-track{ display:inline-flex; white-space:nowrap; animation:scroll-ticker 32s linear infinite; padding:8px 0; }
+  @media (prefers-reduced-motion: reduce){ .site-ticker .ticker-track{ animation:none; overflow-x:auto; } }
+
+  /* ============ MEGA MENU ============ */
+  .nav-links{ position:relative; }
+  .nav-links > li{ position:relative; }
+  .nav-links a[aria-haspopup]{ display:inline-flex; align-items:center; gap:5px; background:none; border:0; font:inherit; cursor:pointer; padding:0; color:inherit; }
+  .nav-links a[aria-haspopup] .chev{ width:9px; height:9px; transition:transform .2s var(--ease); }
+  .nav-links li.mega-open a[aria-haspopup] .chev{ transform:rotate(180deg); }
+  .mega-panel{
+    position:absolute; top:calc(100% + 22px); left:50%; transform:translateX(-50%);
+    width:min(760px, 84vw); background:#fff; border:1px solid var(--border);
+    box-shadow:0 24px 60px rgba(17,17,17,0.12);
+    padding:36px; display:none; grid-template-columns:1.1fr 1.4fr; gap:36px;
+    opacity:0; translate:0 6px; transition:opacity .18s var(--ease), translate .18s var(--ease);
+  }
+  li.mega-open .mega-panel{ display:grid; opacity:1; translate:0 0; }
+  .mega-col h5{
+    font-family:var(--sans); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-soft); font-weight:600; margin:0 0 16px;
+  }
+  .mega-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px; }
+  .mega-col a{ color:var(--ink); font-size:15px; text-decoration:none; display:block; }
+  .mega-col a:hover{ color:var(--accent); }
+  .mega-col a .desc{ display:block; color:var(--ink-soft); font-size:12.5px; margin-top:2px; }
+  .mega-feature{ background:var(--paper,#FAF9F7); border:1px solid var(--border); padding:22px; }
+  .mega-feature .eyebrow{ font-size:10px; }
+  .mega-feature h4{ font-family:var(--serif); font-size:19px; line-height:1.3; margin:10px 0 8px; }
+  .mega-feature p{ color:var(--ink-soft); font-size:13.5px; margin:0 0 14px; }
+  @media (max-width:900px){ .mega-panel{ display:none !important; } }
+
+  /* ============ BREADCRUMB ============ */
+  .breadcrumb{ padding:22px 0 0; font-size:12.5px; color:var(--ink-soft); }
+  .breadcrumb a{ color:var(--ink-soft); text-decoration:none; }
+  .breadcrumb a:hover{ color:var(--accent); }
+  .breadcrumb span[aria-current]{ color:var(--ink); }
+
+  /* ============ PAGE HERO ============ */
+  .page-hero{ padding:26px 0 52px; border-bottom:1px solid var(--border); }
+  .page-hero .eyebrow{ margin-bottom:14px; }
+  .page-hero h1{ font-family:var(--serif); font-weight:600; font-size:clamp(34px,4.4vw,54px); line-height:1.08; letter-spacing:-0.01em; margin:0 0 16px; max-width:16ch; }
+  .page-hero p{ font-size:17px; color:var(--ink-soft); max-width:58ch; margin:0; }
+  .page-hero-meta{ display:flex; gap:22px; margin-top:24px; flex-wrap:wrap; }
+  .page-hero-meta .stat-num{ font-size:22px; }
+  .page-hero-meta .mini-stat{ display:flex; flex-direction:column; gap:2px; }
+  .page-hero-meta .mini-stat span:last-child{ font-size:11px; color:var(--ink-soft); letter-spacing:0.06em; text-transform:uppercase; }
+
+  /* ============ SECTION LABEL ============ */
+  .section-label{
+    font-family:var(--sans); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin:0 0 10px; display:block;
+  }
+  .section-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:32px; flex-wrap:wrap; }
+  .section-head h2{ font-family:var(--serif); font-size:clamp(24px,2.6vw,32px); margin:0; }
+  .section-head .see-all{ font-size:13.5px; }
+
+  /* ============ FILTER BAR ============ */
+  .filter-bar{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; padding:24px 0; border-bottom:1px solid var(--border); margin-bottom:36px; }
+  .search-field{ position:relative; flex:1 1 240px; max-width:340px; }
+  .search-field input{
+    width:100%; padding:10px 14px 10px 36px; border:1px solid var(--border); background:#fff;
+    font:400 14px/1.4 var(--sans); color:var(--ink);
+  }
+  .search-field input:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .search-field svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px; height:15px; stroke:var(--ink-soft); pointer-events:none; }
+  .pill-group{ display:flex; gap:8px; flex-wrap:wrap; }
+  .pill{
+    font:500 12.5px/1 var(--sans); padding:9px 14px; border:1px solid var(--border); background:#fff;
+    color:var(--ink-soft); cursor:pointer; letter-spacing:0.02em; transition:all .15s var(--ease);
+  }
+  .pill:hover{ border-color:var(--ink); color:var(--ink); }
+  .pill.active{ background:var(--ink); border-color:var(--ink); color:#fff; }
+  .sort-select{
+    margin-left:auto; font:500 12.5px var(--sans); padding:9px 30px 9px 12px; border:1px solid var(--border);
+    background:#fff; color:var(--ink); cursor:pointer;
+  }
+  @media (max-width:700px){ .sort-select{ margin-left:0; } }
+
+  /* ============ TAG ============ */
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 40px; }
+  .tag{ font:500 11.5px/1 var(--sans); letter-spacing:0.03em; padding:6px 11px; background:var(--paper,#FAF9F7); color:var(--ink-soft); border:1px solid var(--border); }
+  .card-tag{ font:600 10.5px/1 var(--sans); letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); }
+
+  /* ============ CARD GRID (research) ============ */
+  .card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .card-grid.cols-2{ grid-template-columns:repeat(2,1fr); }
+  .r-card{ background:#fff; padding:28px; display:flex; flex-direction:column; min-height:100%; }
+  .r-card h3{ font-family:var(--serif); font-size:19px; line-height:1.32; margin:10px 0 8px; }
+  .r-card p{ color:var(--ink-soft); font-size:14px; margin:0 0 16px; flex-grow:1; }
+  .r-card .card-meta{ padding-top:14px; border-top:1px solid var(--border); font-family:var(--sans); }
+  .r-card a.card-link{ position:absolute; inset:0; }
+  .r-card{ position:relative; }
+  .r-card:hover h3{ color:var(--accent); }
+  @media (max-width:900px){ .card-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .card-grid, .card-grid.cols-2{ grid-template-columns:1fr; } }
+
+  /* Featured split card */
+  .featured-split{ display:grid; grid-template-columns:1.3fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:56px; }
+  .featured-main{ background:#fff; padding:44px; display:flex; flex-direction:column; justify-content:center; }
+  .featured-main h3{ font-family:var(--serif); font-size:clamp(24px,2.8vw,34px); line-height:1.2; margin:12px 0 14px; }
+  .featured-main p{ color:var(--ink-soft); font-size:15.5px; max-width:52ch; margin:0 0 18px; }
+  .featured-side{ background:#fff; padding:32px; display:flex; flex-direction:column; gap:22px; }
+  .featured-side .mini-item{ padding-bottom:20px; border-bottom:1px solid var(--border); }
+  .featured-side .mini-item:last-child{ border-bottom:0; padding-bottom:0; }
+  .featured-side .mini-item h4{ font-family:var(--serif); font-size:16px; line-height:1.32; margin:6px 0 6px; }
+  @media (max-width:800px){ .featured-split{ grid-template-columns:1fr; } .featured-main{ padding:32px; } }
+
+  /* ============ LOAD MORE ============ */
+  .load-more-wrap{ text-align:center; margin-top:44px; }
+  .btn-outline{
+    font:500 13.5px var(--sans); padding:13px 30px; border:1px solid var(--ink); background:none;
+    color:var(--ink); cursor:pointer; transition:all .18s var(--ease);
+  }
+  .btn-outline:hover{ background:var(--ink); color:#fff; }
+  .btn-outline:disabled{ opacity:.5; cursor:default; }
+  .load-count{ font-size:12.5px; color:var(--ink-soft); margin-top:12px; }
+
+  /* ============ TWO COL WITH SIDEBAR ============ */
+  .with-sidebar{ display:grid; grid-template-columns:1fr 300px; gap:64px; align-items:start; }
+  .sidebar-box{ border:1px solid var(--border); padding:26px; margin-bottom:28px; }
+  .sidebar-box h4{ font-family:var(--sans); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; margin:0 0 18px; }
+  .sidebar-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  .sidebar-list li{ display:flex; gap:12px; align-items:baseline; padding-bottom:16px; border-bottom:1px solid var(--border); }
+  .sidebar-list li:last-child{ border-bottom:0; padding-bottom:0; }
+  .sidebar-list .rank{ font-family:var(--serif); font-style:italic; color:var(--accent); font-size:18px; flex-shrink:0; }
+  .sidebar-list a{ color:var(--ink); font-size:13.5px; line-height:1.4; text-decoration:none; }
+  .sidebar-list a:hover{ color:var(--accent); }
+  @media (max-width:900px){ .with-sidebar{ grid-template-columns:1fr; } }
+
+  /* ============ ISSUE LIST (archive reuse) ============ */
+  .issue-list .issue-row{ grid-template-columns:96px 1fr auto auto; }
+  @media (max-width:700px){ .issue-list .issue-row{ grid-template-columns:1fr; } }
+
+  /* ============ DASHBOARD TILES (markets/macro/data) ============ */
+  .tile-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:56px; }
+  .tile-grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+  .tile{ background:#fff; padding:22px; }
+  .tile .tile-label{ font:600 10.5px/1 var(--sans); letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:12px; }
+  .tile .tile-val{ font-family:var(--sans); font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:-0.01em; }
+  .tile .tile-chg{ font-size:12.5px; font-weight:600; margin-top:6px; font-variant-numeric:tabular-nums; }
+  .tile .tile-chg.up{ color:var(--green); }
+  .tile .tile-chg.down{ color:var(--accent); }
+  @media (max-width:900px){ .tile-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:500px){ .tile-grid, .tile-grid.cols-3{ grid-template-columns:1fr; } }
+
+  /* ============ DATA TABLE ============ */
+  .data-table{ width:100%; border-collapse:collapse; margin-bottom:56px; font-size:14px; }
+  .data-table caption{ text-align:left; font-family:var(--serif); font-size:19px; margin-bottom:16px; caption-side:top; }
+  .data-table th{ text-align:left; font:600 10.5px/1 var(--sans); letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); padding:0 14px 12px; border-bottom:1px solid var(--ink); }
+  .data-table td{ padding:14px; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums; }
+  .data-table td:first-child, .data-table th:first-child{ padding-left:0; }
+  .data-table tr:hover td{ background:var(--paper,#FAF9F7); }
+  .data-table .up{ color:var(--green); font-weight:600; }
+  .data-table .down{ color:var(--accent); font-weight:600; }
+  .data-table-wrap{ overflow-x:auto; }
+
+  /* ============ HEATMAP ============ */
+  .heatmap{ display:grid; grid-template-columns:repeat(8,1fr); gap:3px; margin-bottom:16px; }
+  .heat-cell{ aspect-ratio:1.3; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family:var(--sans); }
+  .heat-cell b{ font-size:13px; font-weight:600; }
+  .heat-cell span{ font-size:11px; font-variant-numeric:tabular-nums; margin-top:3px; }
+  @media (max-width:700px){ .heatmap{ grid-template-columns:repeat(4,1fr); } }
+
+  /* ============ SECTOR / TOPIC GRID ============ */
+  .sector-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:56px; }
+  .sector-card{ background:#fff; padding:30px 26px; text-decoration:none; color:var(--ink); display:block; transition:background .15s var(--ease); }
+  .sector-card:hover{ background:var(--paper,#FAF9F7); }
+  .sector-card .sector-chg{ font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; margin-bottom:10px; display:block; }
+  .sector-card h3{ font-family:var(--serif); font-size:19px; margin:0 0 8px; }
+  .sector-card p{ color:var(--ink-soft); font-size:13px; margin:0; }
+  @media (max-width:900px){ .sector-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:500px){ .sector-grid{ grid-template-columns:1fr; } }
+
+  /* ============ CALENDAR LIST ============ */
+  .cal-row{ display:grid; grid-template-columns:90px 1fr auto; gap:20px; align-items:center; padding:16px 0; border-bottom:1px solid var(--border); }
+  .cal-date{ font-family:var(--sans); font-weight:600; font-size:13px; color:var(--ink-soft); }
+  .cal-impact{ display:inline-flex; gap:3px; }
+  .cal-impact span{ width:6px; height:6px; border-radius:50%; background:var(--border); }
+  .cal-impact span.on{ background:var(--accent); }
+
+  /* ============ QUOTE / PULLQUOTE BLOCK ============ */
+  .pullquote{ border-left:2px solid var(--accent); padding:6px 0 6px 28px; margin:40px 0; font-family:var(--serif); font-style:italic; font-size:clamp(19px,2vw,23px); line-height:1.5; color:var(--ink); }
+
+  /* ============ PROSE PAGE (about) ============ */
+  .prose-block{ max-width:68ch; }
+  .prose-block h2{ font-family:var(--serif); font-size:26px; margin:52px 0 16px; }
+  .prose-block h2:first-child{ margin-top:0; }
+  .prose-block p{ color:var(--ink-soft); font-size:16px; line-height:1.7; margin:0 0 20px; }
+  .value-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin:44px 0; }
+  .value-grid h4{ font-size:16px; margin:0 0 8px; }
+  .value-grid p{ color:var(--ink-soft); font-size:13.5px; margin:0; }
+  @media (max-width:700px){ .value-grid{ grid-template-columns:1fr; } }
+
+  /* ============ ALLOCATION DONUT ============ */
+  .allocation-wrap{ display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
+  .donut{ width:180px; height:180px; border-radius:50%; flex-shrink:0; }
+  .alloc-legend{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .alloc-legend li{ display:flex; align-items:center; gap:10px; font-size:13.5px; }
+  .alloc-legend .swatch{ width:11px; height:11px; flex-shrink:0; }
+
+  /* ============ YIELD MINI CHART ============ */
+  .yield-chart{ width:100%; height:auto; }
+
+  /* ============ PAGE FOOTER CTA ============ */
+  .inline-cta{ background:var(--ink); color:#fff; padding:56px 0; text-align:center; margin:64px 0 0; }
+  .inline-cta h2{ font-family:var(--serif); font-size:clamp(24px,2.8vw,32px); margin:0 0 12px; }
+  .inline-cta p{ color:rgba(255,255,255,0.65); margin:0 0 26px; }
+
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">The Ledger Brief</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li id="megaLi">
+          <a href="research.html" aria-haspopup="true" aria-expanded="false" id="megaTrigger">Research
+            <svg class="chev" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        <div class="mega-panel" id="megaPanel">
+          <div class="mega-col">
+            <h5>Browse by category</h5>
+            <ul>
+              <li><a href="markets.html">Markets<span class="desc">Indices, movers, commodities, currencies, treasuries</span></a></li>
+              <li><a href="macro.html">Macro<span class="desc">Inflation, rates, central banks, the business cycle</span></a></li>
+              <li><a href="equities.html">Equities<span class="desc">Sector-by-sector company and industry research</span></a></li>
+              <li><a href="portfolio.html">Portfolio<span class="desc">Allocation, risk, and long-term strategy</span></a></li>
+              <li><a href="data.html">Data &amp; Dashboards<span class="desc">Interactive charts and reference tables</span></a></li>
+              <li><a href="research.html">All research<span class="desc">Search and filter the full library</span></a></li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <h5>This week</h5>
+            <div class="mega-feature">
+              <p class="eyebrow">Editor's Pick</p>
+              <h4>The Yield Curve Just Un-Inverted. Here's What History Says Happens Next.</h4>
+              <p>A look at the five prior un-inversions since 1978, and why this one is different.</p>
+              <a href="research.html" class="link-underline" style="font-size:13px;">Read the analysis</a>
+            </div>
+          </div>
+        </div>
+        </li>
+        <li><a href="markets.html" class="active">Markets</a></li>
+        <li><a href="macro.html">Macro</a></li>
+        <li><a href="equities.html">Equities</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <a href="index.html#subscribe" class="btn btn-solid btn-sm">Subscribe</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <div class="mobile-panel-top">
+    <span class="logo">The Ledger Brief</span>
+    <button class="nav-toggle" id="navClose" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
+  </div>
+  <a href="research.html">Research</a>
+  <a href="markets.html">Markets</a>
+  <a href="macro.html">Macro</a>
+  <a href="equities.html">Equities</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="data.html">Data</a>
+  <a href="archive.html">Archive</a>
+  <a href="about.html">About</a>
+  <a href="index.html#subscribe" class="subscribe-link">Subscribe</a>
+</div>
+<div class="ticker-bar site-ticker" role="region" aria-label="Market ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+<nav class="breadcrumb wrap" aria-label="Breadcrumb"><a href="index.html">Home</a> / <span aria-current="page">Markets</span></nav>
+
+<main id="main">
+  <div class="wrap page-hero reveal">
+    <p class="eyebrow">Markets · Updated Weekly</p>
+    <h1>Markets, at a glance.</h1>
+    <p>Major indices, commodities, currencies, and treasuries — with the context that raw numbers don't give you. Figures are illustrative and refresh with each issue, not in real time.</p>
+  </div>
+
+  <div class="wrap" style="padding-top:56px;">
+    <div class="section-head reveal"><div><p class="section-label">Market Snapshot</p><h2>Major Indices</h2></div></div>
+    <div class="tile-grid reveal">
+      <div class="tile"><span class="tile-label">S&amp;P 500</span><span class="tile-val">5,842.11</span><span class="tile-chg up">&#9650; +0.42%</span></div>
+      <div class="tile"><span class="tile-label">Nasdaq Composite</span><span class="tile-val">19,003.55</span><span class="tile-chg up">&#9650; +0.61%</span></div>
+      <div class="tile"><span class="tile-label">Dow Jones</span><span class="tile-val">41,220.88</span><span class="tile-chg down">&#9660; -0.18%</span></div>
+      <div class="tile"><span class="tile-label">Russell 2000</span><span class="tile-val">2,184.30</span><span class="tile-chg up">&#9650; +0.24%</span></div>
+      <div class="tile"><span class="tile-label">FTSE 100</span><span class="tile-val">8,211.40</span><span class="tile-chg up">&#9650; +0.15%</span></div>
+      <div class="tile"><span class="tile-label">Euro Stoxx 50</span><span class="tile-val">4,987.60</span><span class="tile-chg down">&#9660; -0.09%</span></div>
+      <div class="tile"><span class="tile-label">Nikkei 225</span><span class="tile-val">39,540.12</span><span class="tile-chg up">&#9650; +0.73%</span></div>
+      <div class="tile"><span class="tile-label">CBOE Volatility (VIX)</span><span class="tile-val">14.82</span><span class="tile-chg down">&#9660; -3.10%</span></div>
+    </div>
+
+    <div class="section-head reveal"><div><p class="section-label">Movers</p><h2>Market Movers</h2></div></div>
+    <div class="data-table-wrap reveal">
+      <table class="data-table">
+        <caption class="visually-hidden">Top gainers and decliners</caption>
+        <thead><tr><th>Gainers</th><th>Price</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>NVEX</td><td>412.88</td><td class="up">+6.42%</td></tr>
+          <tr><td>SOLR</td><td>88.14</td><td class="up">+5.10%</td></tr>
+          <tr><td>QNTM</td><td>54.02</td><td class="up">+4.87%</td></tr>
+        </tbody>
+      </table>
+      <table class="data-table">
+        <caption class="visually-hidden">Top decliners</caption>
+        <thead><tr><th>Decliners</th><th>Price</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>RTLX</td><td>21.44</td><td class="down">-7.18%</td></tr>
+          <tr><td>BLDX</td><td>63.90</td><td class="down">-4.62%</td></tr>
+          <tr><td>SHPG</td><td>109.30</td><td class="down">-3.95%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="with-sidebar">
+      <div>
+        <div class="section-head reveal"><div><p class="section-label">Commodities &amp; Currencies</p><h2>Cross-Asset Pulse</h2></div></div>
+        <table class="data-table reveal">
+          <thead><tr><th>Asset</th><th>Level</th><th>1D</th><th>1M</th></tr></thead>
+          <tbody>
+            <tr><td>Gold</td><td>$2,412.30</td><td class="up">+0.27%</td><td class="up">+2.10%</td></tr>
+            <tr><td>WTI Crude</td><td>$78.64</td><td class="up">+0.35%</td><td class="down">-1.80%</td></tr>
+            <tr><td>Brent Crude</td><td>$82.11</td><td class="up">+0.31%</td><td class="down">-1.42%</td></tr>
+            <tr><td>Bitcoin</td><td>$71,540</td><td class="down">-1.12%</td><td class="up">+8.60%</td></tr>
+            <tr><td>US Dollar Index</td><td>104.12</td><td class="up">+0.09%</td><td class="up">+0.85%</td></tr>
+            <tr><td>EUR/USD</td><td>1.0842</td><td class="down">-0.06%</td><td class="down">-0.40%</td></tr>
+            <tr><td>USD/JPY</td><td>151.24</td><td class="up">+0.22%</td><td class="up">+1.15%</td></tr>
+          </tbody>
+        </table>
+
+        <div class="section-head reveal"><div><p class="section-label">Fixed Income</p><h2>Treasury Yields</h2></div></div>
+        <table class="data-table reveal">
+          <thead><tr><th>Tenor</th><th>Yield</th><th>1W Change</th></tr></thead>
+          <tbody>
+            <tr><td>2-Year</td><td>4.41%</td><td class="down">-0.05%</td></tr>
+            <tr><td>5-Year</td><td>4.32%</td><td class="down">-0.04%</td></tr>
+            <tr><td>10-Year</td><td>4.28%</td><td class="down">-0.03%</td></tr>
+            <tr><td>30-Year</td><td>4.46%</td><td class="up">+0.02%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside>
+        <div class="sidebar-box">
+          <h4>Market Breadth</h4>
+          <div style="display:flex;gap:2px;height:14px;margin-bottom:10px;">
+            <div style="width:64%;background:var(--green);"></div><div style="width:36%;background:var(--accent);"></div>
+          </div>
+          <p style="font-size:12.5px;color:var(--ink-soft);margin:0;">64% of S&amp;P 500 constituents advancing on the week, versus 36% declining — breadth confirming the index-level move.</p>
+        </div>
+        <div class="sidebar-box">
+          <h4>Related Research</h4>
+          <ul class="sidebar-list">
+            <li><span class="rank">01</span><a href="research.html">Credit Spreads Are Quietly Doing Something Unusual</a></li>
+            <li><span class="rank">02</span><a href="research.html">Reading Market Breadth Like a Professional</a></li>
+            <li><span class="rank">03</span><a href="research.html">The Case Against Chasing Momentum Into Earnings</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="inline-cta">
+    <div class="wrap">
+      <h2>Markets move fast. Context shouldn't lag.</h2>
+      <p>Get the week's market read every Tuesday.</p>
+      <form id="signupForm" novalidate data-simulate="true" data-endpoint="https://embeds.beehiiv.com/YOUR_PUBLICATION_ID" style="display:flex;gap:10px;justify-content:center;max-width:420px;margin:0 auto;flex-wrap:wrap;">
+        <label for="email-mid" class="visually-hidden">Email address</label>
+        <input type="email" id="email-mid" name="email" placeholder="you@company.com" required autocomplete="email" inputmode="email" aria-describedby="formMsg" aria-invalid="false" style="flex:1 1 220px;padding:12px 14px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.05);color:#fff;">
+        <button type="submit" class="btn btn-solid btn-sm btn-submit"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-label">Subscribe Free</span></button>
+      </form>
+      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+</main>
+<footer id="footer-contact">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <span class="logo">The Ledger Brief</span>
+      <p>Independent investment research, delivered weekly to serious long-term investors.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Research</h4>
+      <ul>
+        <li><a href="research.html">All Research</a></li>
+        <li><a href="markets.html">Markets</a></li>
+        <li><a href="macro.html">Macro</a></li>
+        <li><a href="equities.html">Equities</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="data.html">Data</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Publication</h4>
+      <ul>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#footer-contact">Contact</a></li>
+        <li><a href="#" onclick="return false;">Privacy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="#" onclick="return false;">LinkedIn</a></li>
+        <li><a href="#" onclick="return false;">X</a></li>
+        <li><a href="#" onclick="return false;">RSS</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-signup">
+      <h4>Subscribe</h4>
+      <form id="footerForm" novalidate data-simulate="true" data-endpoint="https://embeds.beehiiv.com/YOUR_PUBLICATION_ID">
+        <label for="email-footer" class="visually-hidden">Email address</label>
+        <input type="email" id="email-footer" name="email" placeholder="you@company.com"
+          required autocomplete="email" inputmode="email"
+          aria-describedby="footerMsg" aria-invalid="false">
+        <button type="submit" class="btn btn-solid btn-sm btn-submit">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-label">Subscribe Free</span>
+        </button>
+      </form>
+      <p class="form-msg" id="footerMsg" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 The Ledger Brief. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="#" onclick="return false;" aria-label="RSS feed">RSS</a>
+      <a href="#" onclick="return false;" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" onclick="return false;" aria-label="X (Twitter)">X</a>
+    </div>
+  </div>
+</footer>
+<script>
+  // Ticker data
+  const tickerData = [
+    { name:'S&P 500',  val:'5,842.11', chg:'+0.42%', up:true },
+    { name:'NASDAQ',   val:'19,003.55', chg:'+0.61%', up:true },
+    { name:'DOW JONES',val:'41,220.88', chg:'-0.18%', up:false },
+    { name:'GOLD',     val:'$2,412.30', chg:'+0.27%', up:true },
+    { name:'BITCOIN',  val:'$71,540',   chg:'-1.12%', up:false },
+    { name:'WTI CRUDE',val:'$78.64',    chg:'+0.35%', up:true },
+    { name:'10Y YIELD',val:'4.28%',     chg:'-0.03%', up:false },
+    { name:'US DOLLAR',val:'104.12',    chg:'+0.09%', up:true },
+  ];
+  function buildTicker(){
+    const track = document.getElementById('tickerTrack');
+    if(!track) return;
+    const seq = [...tickerData, ...tickerData];
+    track.innerHTML = seq.map((t, i) => `
+      <span class="ticker-item"${i >= tickerData.length ? ' aria-hidden="true"' : ''}>
+        <span class="ticker-name">${t.name}</span>
+        <span class="ticker-val">${t.val}</span>
+        <span class="${t.up ? 'up':'down'}">${t.up ? '▲':'▼'} ${t.chg}</span>
+      </span>`).join('');
+  }
+  buildTicker();
+
+  // Mobile nav
+  const navToggle = document.getElementById('navToggle');
+  const navClose = document.getElementById('navClose');
+  const panel = document.getElementById('mobilePanel');
+  if(navToggle){
+    navToggle.addEventListener('click', () => {
+      panel.classList.add('open');
+      navToggle.setAttribute('aria-expanded','true');
+    });
+    navClose.addEventListener('click', () => {
+      panel.classList.remove('open');
+      navToggle.setAttribute('aria-expanded','false');
+    });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => panel.classList.remove('open')));
+  }
+
+  // Mega menu (click + keyboard; hover on fine-pointer devices)
+  const megaLi = document.getElementById('megaLi');
+  const megaTrigger = document.getElementById('megaTrigger');
+  if(megaLi && megaTrigger){
+    function openMega(){ megaLi.classList.add('mega-open'); megaTrigger.setAttribute('aria-expanded','true'); }
+    function closeMega(){ megaLi.classList.remove('mega-open'); megaTrigger.setAttribute('aria-expanded','false'); }
+    megaTrigger.addEventListener('click', (e) => {
+      if(window.matchMedia('(max-width:900px)').matches) return;
+      e.preventDefault();
+      megaLi.classList.contains('mega-open') ? closeMega() : openMega();
+    });
+    megaLi.addEventListener('mouseenter', () => { if(window.matchMedia('(hover:hover)').matches) openMega(); });
+    megaLi.addEventListener('mouseleave', () => { if(window.matchMedia('(hover:hover)').matches) closeMega(); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMega(); });
+    document.addEventListener('click', (e) => { if(!megaLi.contains(e.target)) closeMega(); });
+  }
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ============ NEWSLETTER FORMS ============
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setFieldError(input, msg, message){
+    input.setAttribute('aria-invalid','true');
+    msg.textContent = message;
+    msg.className = 'form-msg show is-error';
+  }
+  function setButtonLoading(button, loading){
+    button.classList.toggle('is-loading', loading);
+    button.disabled = loading;
+    button.setAttribute('aria-busy', loading ? 'true' : 'false');
+  }
+  function simulateSubscribe(){
+    return new Promise((resolve, reject) => {
+      setTimeout(() => (Math.random() > 0.05 ? resolve() : reject()), 700);
+    });
+  }
+  async function subscribeReal(endpoint, email){
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    if(!res.ok) throw new Error('Request failed');
+  }
+  function wireForm(formId, msgId){
+    const form = document.getElementById(formId);
+    const msg = document.getElementById(msgId);
+    if(!form) return;
+    const input = form.querySelector('input[type="email"]');
+    const button = form.querySelector('button[type="submit"]');
+    input.addEventListener('input', () => {
+      if(input.getAttribute('aria-invalid') === 'true'){
+        input.setAttribute('aria-invalid','false');
+        msg.className = 'form-msg';
+        msg.textContent = '';
+      }
+    });
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input.value.trim();
+      if(!email || !EMAIL_RE.test(email)){
+        setFieldError(input, msg, 'Enter a valid email address to subscribe.');
+        input.focus();
+        return;
+      }
+      setButtonLoading(button, true);
+      try{
+        if(form.dataset.simulate === 'true'){
+          await simulateSubscribe();
+        } else {
+          await subscribeReal(form.dataset.endpoint, email);
+        }
+        input.setAttribute('aria-invalid','false');
+        msg.className = 'form-msg show is-success';
+        msg.textContent = "You're on the list — check your inbox to confirm.";
+        form.reset();
+      } catch(err){
+        msg.className = 'form-msg show is-error';
+        msg.textContent = 'Something went wrong. Please try again in a moment.';
+      } finally {
+        setButtonLoading(button, false);
+      }
+    });
+  }
+  wireForm('signupForm','formMsg');
+  wireForm('footerForm','footerMsg');
+
+
+</script>
+</body>
+</html>
