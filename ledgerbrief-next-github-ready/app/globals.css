@@ -1,4 +1,3 @@
-<style>
   /* ============ TOKENS ============ */
   :root{
     --bg:#FFFFFF;
@@ -491,7 +490,6 @@
     .footer-top{ grid-template-columns:1fr; gap:36px; }
     .footer-signup{ max-width:100%; }
   }
-</style>
 
   /* ============ PERSISTENT TICKER (all pages) ============ */
   .site-ticker{ background:var(--ink); overflow:hidden; }
