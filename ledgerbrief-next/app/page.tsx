@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getPublishedPosts, withIssueNumbers, categoryForPost, estimateReadingMinutes, excerptFromHtml } from "@/lib/beehiiv";
 import { IssueRow, EmptyState, BeehiivErrorState } from "@/components/PostCards";
 import NewsletterForm from "@/components/NewsletterForm";
+import { getTreasuryCurve } from "@/lib/treasury";
 
 export const revalidate = 120;
 
@@ -16,6 +17,7 @@ function formatDate(unixSeconds: number | null): string {
 
 export default async function HomePage() {
   const allPosts = await getPublishedPosts({ limit: 100 });
+  const treasury = await getTreasuryCurve();
   const beehiivFailed = allPosts === null; // getPublishedPosts never actually returns null (falls back to []), kept for clarity
   const featured = allPosts.slice(0, 3);
   const numbered = withIssueNumbers(allPosts).slice(0, 4);
