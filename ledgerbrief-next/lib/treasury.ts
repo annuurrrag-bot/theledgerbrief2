@@ -19,7 +19,6 @@ function getNumber(value: string | null | undefined): number | null {
   if (!value || value === "N/A") return null;
 
   const number = Number(value);
-
   return Number.isFinite(number) ? number : null;
 }
 
@@ -42,7 +41,13 @@ export async function getTreasuryCurve(): Promise<TreasuryCurve | null> {
 
     const xml = await response.text();
 
-    const rows = [...xml.matchAll(/<d2p1:DailyTreasuryParYieldCurveRate>([\s\S]*?)<\/d2p1:DailyTreasuryParYieldCurveRate>/g)];
+    // Treasury XML can contain namespace prefixes such as d2p1:
+    // so match the element name regardless of the prefix.
+    const rows = [
+      ...xml.matchAll(
+        /<(?:\w+:)?DailyTreasuryParYieldCurveRate\b[^>]*>([\s\S]*?)<\/(?:\w+:)?DailyTreasuryParYieldCurveRate>/g
+      ),
+    ];
 
     if (!rows.length) {
       throw new Error("No Treasury yield data found");
@@ -50,18 +55,23 @@ export async function getTreasuryCurve(): Promise<TreasuryCurve | null> {
 
     const latest = rows[rows.length - 1][1];
 
-    const getField = (field: string) => {
+    const getField = (field: string): string | null => {
       const match = latest.match(
-        new RegExp(`<d2p1:${field}>(.*?)</d2p1:${field}>`)
+        new RegExp(
+          `<(?:\\w+:)?${field}\\b[^>]*>(.*?)</(?:\\w+:)?${field}>`
+        )
       );
 
-      return match?.[1] ?? null;
+      return match?.[1]?.trim() ?? null;
     };
 
-    const date = getField("BC_1MONTH") ? getField("NEW_DATE") : null;
+    const date = getField("NEW_DATE");
 
     return {
-      date: date ?? new Date().toISOString().slice(0, 10),
+      date: date
+        ? new Date(date).toISOString().slice(0, 10)
+        : new Date().toISOString().slice(0, 10),
+
       rates: {
         "1M": getNumber(getField("BC_1MONTH")),
         "3M": getNumber(getField("BC_3MONTH")),
