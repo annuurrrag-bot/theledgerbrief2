@@ -18,73 +18,127 @@ export type TreasuryCurve = {
 function getNumber(value: string | null | undefined): number | null {
   if (!value || value === "N/A") return null;
 
-  const number = Number(value);
+  const number = Number(value.trim());
+
   return Number.isFinite(number) ? number : null;
+}
+
+function getXmlField(xml: string, field: string): string | null {
+  const regex = new RegExp(
+    `<(?:\\w+:)?${field}\\b[^>]*>(.*?)</(?:\\w+:)?${field}>`,
+    "i"
+  );
+
+  const match = xml.match(regex);
+
+  return match?.[1]?.trim() ?? null;
 }
 
 export async function getTreasuryCurve(): Promise<TreasuryCurve | null> {
   try {
     const year = new Date().getUTCFullYear();
 
-    const response = await fetch(
-      `${TREASURY_URL}?data=daily_treasury_yield_curve&field_tdr_date_value=${year}`,
-      {
-        next: {
-          revalidate: 3600,
-        },
-      }
-    );
+    const url =
+      `${TREASURY_URL}` +
+      `?data=daily_treasury_yield_curve` +
+      `&field_tdr_date_value=${year}`;
+
+    const response = await fetch(url, {
+      next: {
+        revalidate: 3600,
+      },
+    });
 
     if (!response.ok) {
-      throw new Error(`Treasury API returned ${response.status}`);
+      throw new Error(
+        `Treasury API returned ${response.status}`
+      );
     }
 
     const xml = await response.text();
 
-    // Treasury XML can contain namespace prefixes such as d2p1:
-    // so match the element name regardless of the prefix.
-    const rows = [
+    /*
+     * Treasury's XML feed is an Atom/XML document.
+     *
+     * Each <entry> contains the actual Treasury rate fields.
+     * We extract all entries and use the most recent one.
+     */
+
+    const entries = [
       ...xml.matchAll(
-        /<(?:\w+:)?DailyTreasuryParYieldCurveRate\b[^>]*>([\s\S]*?)<\/(?:\w+:)?DailyTreasuryParYieldCurveRate>/g
+        /<entry\b[^>]*>([\s\S]*?)<\/entry>/gi
       ),
     ];
 
-    if (!rows.length) {
-      throw new Error("No Treasury yield data found");
+    if (!entries.length) {
+      throw new Error("No Treasury entries found");
     }
 
-    const latest = rows[rows.length - 1][1];
+    const latest = entries[entries.length - 1][1];
 
-    const getField = (field: string): string | null => {
-      const match = latest.match(
-        new RegExp(
-          `<(?:\\w+:)?${field}\\b[^>]*>(.*?)</(?:\\w+:)?${field}>`
-        )
-      );
+    const date = getXmlField(latest, "NEW_DATE");
 
-      return match?.[1]?.trim() ?? null;
+    const rates = {
+      "1M": getNumber(
+        getXmlField(latest, "BC_1MONTH")
+      ),
+
+      "3M": getNumber(
+        getXmlField(latest, "BC_3MONTH")
+      ),
+
+      "6M": getNumber(
+        getXmlField(latest, "BC_6MONTH")
+      ),
+
+      "1Y": getNumber(
+        getXmlField(latest, "BC_1YEAR")
+      ),
+
+      "2Y": getNumber(
+        getXmlField(latest, "BC_2YEAR")
+      ),
+
+      "5Y": getNumber(
+        getXmlField(latest, "BC_5YEAR")
+      ),
+
+      "10Y": getNumber(
+        getXmlField(latest, "BC_10YEAR")
+      ),
+
+      "30Y": getNumber(
+        getXmlField(latest, "BC_30YEAR")
+      ),
     };
 
-    const date = getField("NEW_DATE");
+    /*
+     * Make sure we actually received Treasury yield data.
+     * This prevents the site from displaying fake/empty values.
+     */
+    const validRates = Object.values(rates).filter(
+      (value) => value !== null
+    );
+
+    if (!validRates.length) {
+      throw new Error(
+        "Treasury entry found, but no yield values were parsed"
+      );
+    }
 
     return {
       date: date
         ? new Date(date).toISOString().slice(0, 10)
         : new Date().toISOString().slice(0, 10),
 
-      rates: {
-        "1M": getNumber(getField("BC_1MONTH")),
-        "3M": getNumber(getField("BC_3MONTH")),
-        "6M": getNumber(getField("BC_6MONTH")),
-        "1Y": getNumber(getField("BC_1YEAR")),
-        "2Y": getNumber(getField("BC_2YEAR")),
-        "5Y": getNumber(getField("BC_5YEAR")),
-        "10Y": getNumber(getField("BC_10YEAR")),
-        "30Y": getNumber(getField("BC_30YEAR")),
-      },
+      rates,
     };
   } catch (error) {
-    console.error("Treasury data error:", error);
+    console.error(
+      "Treasury data error:",
+      error
+    );
+
     return null;
   }
 }
