@@ -14,24 +14,14 @@ type MarketResponse = {
   quotes: MarketQuote[];
 };
 
-const REFRESH_INTERVAL = 30_000;
+const REFRESH_INTERVAL = 30_000; // 30 seconds
 
 function formatValue(name: string, value: number | null): string {
   if (value === null) return "—";
 
   switch (name) {
     case "S&P 500":
-      return value.toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
-
     case "NASDAQ":
-      return value.toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
-
     case "DOW JONES":
       return value.toLocaleString("en-US", {
         minimumFractionDigits: 2,
@@ -39,6 +29,7 @@ function formatValue(name: string, value: number | null): string {
       });
 
     case "GOLD":
+    case "WTI CRUDE":
       return `$${value.toLocaleString("en-US", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
@@ -48,12 +39,6 @@ function formatValue(name: string, value: number | null): string {
       return `$${value.toLocaleString("en-US", {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
-      })}`;
-
-    case "WTI CRUDE":
-      return `$${value.toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
       })}`;
 
     case "10Y YIELD":
@@ -77,14 +62,9 @@ function formatChange(change: number | null): string {
   return `${sign}${change.toFixed(2)}%`;
 }
 
-function isPositive(change: number | null): boolean {
-  return typeof change === "number" && change >= 0;
-}
-
 export default function Ticker() {
   const [quotes, setQuotes] = useState<MarketQuote[]>([]);
   const [loading, setLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
   const fetchMarketData = useCallback(async () => {
     try {
@@ -98,8 +78,9 @@ export default function Ticker() {
 
       const data: MarketResponse = await response.json();
 
-      setQuotes(data.quotes);
-      setLastUpdated(data.updatedAt);
+      if (Array.isArray(data.quotes)) {
+        setQuotes(data.quotes);
+      }
     } catch (error) {
       console.error("Ticker market data error:", error);
     } finally {
@@ -120,11 +101,6 @@ export default function Ticker() {
     };
   }, [fetchMarketData]);
 
-  /*
-   * Keep the ticker moving smoothly by duplicating the
-   * live data once. The second copy is hidden from screen
-   * readers to avoid duplicate announcements.
-   */
   const sequence = [...quotes, ...quotes];
 
   return (
@@ -139,10 +115,16 @@ export default function Ticker() {
             <span className="ticker-name">MARKETS</span>
             <span className="ticker-val">Loading…</span>
           </span>
+        ) : quotes.length === 0 ? (
+          <span className="ticker-item">
+            <span className="ticker-name">MARKETS</span>
+            <span className="ticker-val">Data unavailable</span>
+          </span>
         ) : (
           sequence.map((quote, index) => {
             const duplicate = index >= quotes.length;
-            const positive = isPositive(quote.changePercent);
+            const change = quote.changePercent;
+            const positive = typeof change === "number" && change >= 0;
 
             return (
               <span
@@ -155,44 +137,30 @@ export default function Ticker() {
                 </span>
 
                 <span className="ticker-val">
-                  {formatValue(
-                    quote.name,
-                    quote.value
-                  )}
+                  {formatValue(quote.name, quote.value)}
                 </span>
 
                 <span
                   className={
-                    quote.changePercent === null
+                    change === null
                       ? ""
                       : positive
                         ? "up"
                         : "down"
                   }
                 >
-                  {quote.changePercent === null
+                  {change === null
                     ? "—"
                     : positive
                       ? "▲"
                       : "▼"}{" "}
-                  {formatChange(
-                    quote.changePercent
-                  )}
+                  {formatChange(change)}
                 </span>
               </span>
             );
           })
         )}
       </div>
-
-      {lastUpdated && (
-        <span
-          className="ticker-live-status"
-          aria-label="Market data update status"
-        >
-          LIVE
-        </span>
-      )}
     </div>
   );
 }
