@@ -226,9 +226,9 @@ function formatUpdatedAt(date: string | undefined) {
 
 export default async function MarketsPage() {
   const [markets, treasury] = await Promise.all([
-    (),
-    getTreasuryCurve(),
-  ]);
+  getMarkets(),
+  getTreasuryCurve(),
+]);
 
   const quotes = markets?.quotes ?? [];
 
