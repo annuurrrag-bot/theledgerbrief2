@@ -35,7 +35,7 @@ export default function PortfolioPage() {
             className="donut"
             style={{
               background:
-  "conic-gradient(#D62828 0 45%, #2563A6 45% 65%, #1F8A5B 65% 82%, #E0A11A 82% 92%, #6B7280 92% 100%)",
+  "conic-gradient(#E32636 0 45%, #173F6B 45% 65%, #3E7C73 65% 82%, #D89B2B 82% 92%, #C7C9CC 92% 100%)",
             }}
           ></div>
 
@@ -43,7 +43,7 @@ export default function PortfolioPage() {
             <li>
               <span
                 className="swatch"
-                style={{ background: "#8B1E2D" }}
+                style={{ background: "#E32636" }}
               ></span>
               Global Equities — 45%
             </li>
@@ -51,7 +51,7 @@ export default function PortfolioPage() {
             <li>
               <span
                 className="swatch"
-                style={{ background: "#B65A68" }}
+                style={{ background: "#173F6B" }}
               ></span>
               Fixed Income — 20%
             </li>
@@ -59,7 +59,7 @@ export default function PortfolioPage() {
             <li>
               <span
                 className="swatch"
-                style={{ background: "#6F7772" }}
+                style={{ background: "#3E7C73" }}
               ></span>
               Real Assets — 17%
             </li>
@@ -67,7 +67,7 @@ export default function PortfolioPage() {
             <li>
               <span
                 className="swatch"
-                style={{ background: "#B79A63" }}
+                style={{ background: "#D89B2B" }}
               ></span>
               Alternatives — 10%
             </li>
@@ -75,7 +75,7 @@ export default function PortfolioPage() {
             <li>
               <span
                 className="swatch"
-                style={{ background: "#D8D5CF" }}
+                style={{ background: "#C7C9CC" }}
               ></span>
               Cash — 8%
             </li>
