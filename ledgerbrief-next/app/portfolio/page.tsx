@@ -18,7 +18,13 @@ export default function PortfolioPage() {
       <div className="wrap" style={{paddingTop: '56px'}}>
         <div className="section-head reveal"><div><p className="section-label">Illustrative</p><h2>A Sample Long-Term Allocation</h2></div></div>
         <div className="allocation-wrap reveal" style={{marginBottom: '56px'}}>
-          <div className="donut" style={{background: 'conic-gradient(#111111 0 45%, #8B1E2D 45% 65%, #1B5E3F 65% 82%, #C9A24B 82% 92%, #B7B7B7 92% 100%)'}}></div>
+          <div
+  className="donut"
+  style={{
+    background:
+      'conic-gradient(#8B1E2D 0 45%, #B65A68 45% 65%, #6F7772 65% 82%, #B79A63 82% 92%, #D8D5CF 92% 100%)'
+  }}
+></div>></div>
           <ul className="alloc-legend">
             <li><span className="swatch" style={{background: '#111111'}}></span>Global Equities — 45%</li>
             <li><span className="swatch" style={{background: '#8B1E2D'}}></span>Fixed Income — 20%</li>
