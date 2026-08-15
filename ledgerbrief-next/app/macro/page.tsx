@@ -315,7 +315,31 @@ export default async function MacroPage() {
         >
           <div className="tile">
             <span className="tile-label">
-              Fed Funds Rate
+              <div className="tile">
+  <span className="tile-label">
+    Fed Funds Rate
+  </span>
+
+  <span className="tile-val">
+    {macro.policy.fedUpper !== null
+      ? `${macro.policy.fedUpper.toFixed(2)}%`
+      : "—"}
+  </span>
+
+  <span
+    className="tile-chg"
+    style={{
+      color: "var(--ink-soft)",
+    }}
+  >
+    {macro.policy.fedLower !== null &&
+    macro.policy.fedUpper !== null
+      ? `Target range ${macro.policy.fedLower.toFixed(
+          2
+        )}–${macro.policy.fedUpper.toFixed(2)}%`
+      : "Policy rate unavailable"}
+  </span>
+</div>
             </span>
 
             <span className="tile-val">
