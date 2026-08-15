@@ -74,7 +74,7 @@ export default async function PortfolioPage() {
     <main id="main">
       <div className="wrap page-hero reveal">
         <p className="eyebrow">
-          Portfolio · Model Allocation
+          The Ledger Brief · Model Allocation
         </p>
 
         <h1>
@@ -93,8 +93,8 @@ export default async function PortfolioPage() {
             color: "var(--ink-soft)",
           }}
         >
-          Model portfolio updated{" "}
-          {formatUpdatedAt(performance.updatedAt)}
+          Model allocation · Rebalanced periodically · Market data updated{" "}
+{formatUpdatedAt(performance.updatedAt)}
         </p>
       </div>
 
@@ -111,7 +111,7 @@ export default async function PortfolioPage() {
             </p>
 
             <h2>
-              A Sample Long-Term Allocation
+              Strategic Allocation
             </h2>
           </div>
         </div>
@@ -155,8 +155,8 @@ export default async function PortfolioPage() {
             margin: "-40px 0 56px",
           }}
         >
-          Illustrative allocation for discussion purposes only · not a
-          personalized recommendation.
+          Strategic model allocation for research and discussion purposes ONLY · not a
+personalized recommendation.
         </p>
 
         {/* PERFORMANCE */}
@@ -247,7 +247,7 @@ export default async function PortfolioPage() {
             </p>
 
             <h2>
-              Allocation Performance
+              Asset-Class Performance
             </h2>
           </div>
         </div>
