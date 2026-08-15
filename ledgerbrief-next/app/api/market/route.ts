@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300;
 
 type MarketQuote = {
   symbol: string;
@@ -11,38 +11,24 @@ type MarketQuote = {
 };
 
 const MARKETS = [
-  {
-    symbol: "^GSPC",
-    name: "S&P 500",
-  },
-  {
-    symbol: "^IXIC",
-    name: "NASDAQ",
-  },
-  {
-    symbol: "^DJI",
-    name: "DOW JONES",
-  },
-  {
-    symbol: "GC=F",
-    name: "GOLD",
-  },
-  {
-    symbol: "BTC-USD",
-    name: "BITCOIN",
-  },
-  {
-    symbol: "CL=F",
-    name: "WTI CRUDE",
-  },
-  {
-    symbol: "^TNX",
-    name: "10Y YIELD",
-  },
-  {
-    symbol: "DX-Y.NYB",
-    name: "US DOLLAR",
-  },
+  { symbol: "^GSPC", name: "S&P 500" },
+  { symbol: "^IXIC", name: "NASDAQ COMPOSITE" },
+  { symbol: "^DJI", name: "DOW JONES" },
+  { symbol: "^RUT", name: "RUSSELL 2000" },
+
+  { symbol: "^FTSE", name: "FTSE 100" },
+  { symbol: "^STOXX50E", name: "EURO STOXX 50" },
+  { symbol: "^N225", name: "NIKKEI 225" },
+  { symbol: "^VIX", name: "CBOE VOLATILITY (VIX)" },
+
+  { symbol: "GC=F", name: "GOLD" },
+  { symbol: "CL=F", name: "WTI CRUDE" },
+  { symbol: "BZ=F", name: "BRENT CRUDE" },
+
+  { symbol: "BTC-USD", name: "BITCOIN" },
+  { symbol: "DX-Y.NYB", name: "US DOLLAR INDEX" },
+  { symbol: "EURUSD=X", name: "EUR/USD" },
+  { symbol: "JPY=X", name: "USD/JPY" },
 ];
 
 async function getQuote(symbol: string): Promise<{
@@ -51,11 +37,12 @@ async function getQuote(symbol: string): Promise<{
 }> {
   try {
     const url =
-      `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}` +
-      `?range=1d&interval=1m`;
+      `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(
+        symbol
+      )}?range=1d&interval=1m`;
 
     const response = await fetch(url, {
-      cache: "no-store",
+      next: { revalidate: 300 },
       headers: {
         "User-Agent": "Mozilla/5.0",
         Accept: "application/json",
@@ -74,7 +61,6 @@ async function getQuote(symbol: string): Promise<{
     }
 
     const data = await response.json();
-
     const result = data?.chart?.result?.[0];
 
     if (!result) {
@@ -91,7 +77,10 @@ async function getQuote(symbol: string): Promise<{
       meta?.currentTradingPeriod?.regular?.close ??
       null;
 
-    const previousClose = meta?.previousClose ?? null;
+    const previousClose =
+      meta?.chartPreviousClose ??
+      meta?.previousClose ??
+      null;
 
     let changePercent: number | null = null;
 
@@ -135,16 +124,8 @@ export async function GET() {
     })
   );
 
-  return NextResponse.json(
-    {
-      updatedAt: new Date().toISOString(),
-      quotes,
-    },
-    {
-      headers: {
-        "Cache-Control":
-          "no-store, no-cache, must-revalidate, proxy-revalidate",
-      },
-    }
-  );
+  return NextResponse.json({
+    updatedAt: new Date().toISOString(),
+    quotes,
+  });
 }
