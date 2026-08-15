@@ -49,14 +49,16 @@ export default function ConfirmedPage() {
 
           {/* Label */}
           <p
-            className="eyebrow"
-            style={{
-              marginBottom: "22px",
-              letterSpacing: "0.16em",
-            }}
-          >
-            Subscription Confirmed
-          </p>
+  className="eyebrow"
+  style={{
+    marginBottom: "22px",
+    letterSpacing: "0.14em",
+    fontSize: "14px",
+    fontWeight: 600,
+  }}
+>
+  Subscription Confirmed
+</p>
 
           {/* Main heading */}
           <h1
