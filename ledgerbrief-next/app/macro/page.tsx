@@ -2,8 +2,6 @@ import NewsletterForm from "@/components/NewsletterForm";
 import { getMacroSnapshot } from "@/lib/macro";
 import { getTreasuryCurve } from "@/lib/treasury";
 import type { Metadata } from "next";
-import { getMacroSnapshot } from "@/lib/macro";
-import { getTreasuryCurve } from "@/lib/treasury";
 
 export const metadata: Metadata = {
   title: "Macro",
