@@ -725,3 +725,9 @@
 .beehiiv-content table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
 .beehiiv-content th, .beehiiv-content td { border-bottom: 1px solid var(--border); padding: 10px 12px; text-align: left; }
 .beehiiv-content code { background: var(--paper, #FAF9F7); padding: 2px 6px; font-size: 0.9em; }
+/* Hide Macro Monitor completely on mobile */
+@media (max-width: 768px) {
+  .hero-viz {
+    display: none !important;
+  }
+}
