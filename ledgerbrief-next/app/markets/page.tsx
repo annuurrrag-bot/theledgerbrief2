@@ -1,6 +1,5 @@
 import NewsletterForm from "@/components/NewsletterForm";
 import { getTreasuryCurve } from "@/lib/treasury";
-import { headers } from "next/headers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -23,33 +22,122 @@ type MarketResponse = {
   quotes: MarketQuote[];
 };
 
-async function getMarkets(): Promise<MarketResponse | null> {
+const MARKET_SYMBOLS = [
+  { symbol: "^GSPC", name: "S&P 500" },
+  { symbol: "^IXIC", name: "NASDAQ COMPOSITE" },
+  { symbol: "^DJI", name: "DOW JONES" },
+  { symbol: "^RUT", name: "RUSSELL 2000" },
+
+  { symbol: "^FTSE", name: "FTSE 100" },
+  { symbol: "^STOXX50E", name: "EURO STOXX 50" },
+  { symbol: "^N225", name: "NIKKEI 225" },
+  { symbol: "^VIX", name: "CBOE VOLATILITY (VIX)" },
+
+  { symbol: "GC=F", name: "GOLD" },
+  { symbol: "CL=F", name: "WTI CRUDE" },
+  { symbol: "BZ=F", name: "BRENT CRUDE" },
+
+  { symbol: "BTC-USD", name: "BITCOIN" },
+  { symbol: "DX-Y.NYB", name: "US DOLLAR INDEX" },
+  { symbol: "EURUSD=X", name: "EUR/USD" },
+  { symbol: "JPY=X", name: "USD/JPY" },
+];
+
+async function getMarketQuote(
+  symbol: string
+): Promise<{
+  value: number | null;
+  changePercent: number | null;
+}> {
   try {
-    const headerList = headers();
-    const host = headerList.get("host");
+    const url =
+      `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(
+        symbol
+      )}?range=1d&interval=1m`;
 
-    if (!host) {
-      return null;
-    }
-
-    const protocol = host.includes("localhost") ? "http" : "https";
-
-    const response = await fetch(
-      `${protocol}://${host}/api/markets`,
-      {
-        next: { revalidate: 300 },
-      }
-    );
+    const response = await fetch(url, {
+      next: { revalidate: 300 },
+      headers: {
+        "User-Agent": "Mozilla/5.0",
+        Accept: "application/json",
+      },
+    });
 
     if (!response.ok) {
-      return null;
+      return {
+        value: null,
+        changePercent: null,
+      };
     }
 
-    return response.json();
+    const data = await response.json();
+    const result = data?.chart?.result?.[0];
+
+    if (!result) {
+      return {
+        value: null,
+        changePercent: null,
+      };
+    }
+
+    const meta = result.meta;
+
+    const currentPrice =
+      meta?.regularMarketPrice ??
+      meta?.currentTradingPeriod?.regular?.close ??
+      null;
+
+    const previousClose =
+      meta?.chartPreviousClose ??
+      meta?.previousClose ??
+      null;
+
+    let changePercent: number | null = null;
+
+    if (
+      typeof currentPrice === "number" &&
+      typeof previousClose === "number" &&
+      previousClose !== 0
+    ) {
+      changePercent =
+        ((currentPrice - previousClose) / previousClose) * 100;
+    }
+
+    return {
+      value:
+        typeof currentPrice === "number"
+          ? currentPrice
+          : null,
+      changePercent,
+    };
   } catch (error) {
-    console.error("Markets page fetch error:", error);
-    return null;
+    console.error(`Market fetch error for ${symbol}:`, error);
+
+    return {
+      value: null,
+      changePercent: null,
+    };
   }
+}
+
+async function getMarkets(): Promise<MarketResponse> {
+  const quotes = await Promise.all(
+    MARKET_SYMBOLS.map(async (market) => {
+      const quote = await getMarketQuote(market.symbol);
+
+      return {
+        symbol: market.symbol,
+        name: market.name,
+        value: quote.value,
+        changePercent: quote.changePercent,
+      };
+    })
+  );
+
+  return {
+    updatedAt: new Date().toISOString(),
+    quotes,
+  };
 }
 
 function formatNumber(
@@ -138,7 +226,7 @@ function formatUpdatedAt(date: string | undefined) {
 
 export default async function MarketsPage() {
   const [markets, treasury] = await Promise.all([
-    getMarkets(),
+    (),
     getTreasuryCurve(),
   ]);
 
