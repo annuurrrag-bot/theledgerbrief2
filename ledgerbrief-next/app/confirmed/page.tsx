@@ -12,18 +12,18 @@ export default function ConfirmedPage() {
       <section
         className="wrap"
         style={{
-          minHeight: "72vh",
+          minHeight: "76vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          paddingTop: "80px",
-          paddingBottom: "100px",
+          paddingTop: "72px",
+          paddingBottom: "96px",
         }}
       >
         <div
           style={{
             width: "100%",
-            maxWidth: "680px",
+            maxWidth: "760px",
             textAlign: "center",
           }}
         >
@@ -31,37 +31,40 @@ export default function ConfirmedPage() {
           <div
             aria-hidden="true"
             style={{
-              width: "42px",
-              height: "42px",
-              border: "1px solid var(--accent)",
+              width: "52px",
+              height: "52px",
+              border: "1.5px solid var(--accent)",
               borderRadius: "50%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              margin: "0 auto 30px",
+              margin: "0 auto 34px",
               color: "var(--accent)",
-              fontSize: "18px",
+              fontSize: "22px",
               fontWeight: 600,
             }}
           >
             ✓
           </div>
 
+          {/* Label */}
           <p
             className="eyebrow"
             style={{
-              marginBottom: "18px",
+              marginBottom: "22px",
+              letterSpacing: "0.16em",
             }}
           >
             Subscription Confirmed
           </p>
 
+          {/* Main heading */}
           <h1
             style={{
-              fontSize: "clamp(42px, 6vw, 68px)",
-              lineHeight: 1.04,
-              letterSpacing: "-0.035em",
-              marginBottom: "24px",
+              fontSize: "clamp(50px, 6vw, 76px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.04em",
+              margin: "0 auto 28px",
             }}
           >
             Welcome to
@@ -69,12 +72,13 @@ export default function ConfirmedPage() {
             The Ledger Brief.
           </h1>
 
+          {/* Main message */}
           <p
             style={{
-              maxWidth: "510px",
+              maxWidth: "580px",
               margin: "0 auto",
-              fontSize: "17px",
-              lineHeight: 1.7,
+              fontSize: "19px",
+              lineHeight: 1.65,
               color: "var(--ink-soft)",
             }}
           >
@@ -82,42 +86,56 @@ export default function ConfirmedPage() {
             directly in your inbox.
           </p>
 
+          {/* Accent divider */}
           <div
+            aria-hidden="true"
             style={{
-              width: "44px",
+              width: "48px",
               height: "1px",
               background: "var(--accent)",
-              margin: "34px auto",
+              margin: "38px auto",
             }}
           />
 
+          {/* Secondary message */}
           <p
             style={{
-              fontSize: "13px",
-              lineHeight: 1.6,
+              maxWidth: "620px",
+              margin: "0 auto 32px",
+              fontSize: "15px",
+              lineHeight: 1.7,
               color: "var(--ink-soft)",
-              marginBottom: "30px",
             }}
           >
-            In the meantime, explore our latest market intelligence,
-            macro analysis, and investment research.
+            In the meantime, explore our latest market intelligence, macro
+            analysis, and investment research.
           </p>
 
+          {/* CTA */}
           <Link
             href="/research"
-            className="btn-primary"
             style={{
               display: "inline-block",
+              background: "var(--accent)",
+              color: "#ffffff",
+              padding: "14px 28px",
+              borderRadius: "4px",
               textDecoration: "none",
+              fontSize: "14px",
+              fontWeight: 600,
+              letterSpacing: "0.01em",
             }}
           >
             Explore Research
           </Link>
 
+          {/* Footer note */}
           <p
             style={{
-              marginTop: "38px",
-              fontSize: "12px",
+              marginTop: "42px",
+              marginBottom: 0,
+              fontSize: "12.5px",
+              letterSpacing: "0.02em",
               color: "var(--ink-soft)",
             }}
           >
