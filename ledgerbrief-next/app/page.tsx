@@ -348,7 +348,7 @@ export default async function HomePage() {
                 fill="#8B1E2D"
                 letterSpacing="1.4"
               >
-                LB · MACRO DASHBOARD
+                LB · MACRO MONITOR
               </text>
 
               <line
@@ -633,7 +633,7 @@ export default async function HomePage() {
                 textAnchor="middle"
                 fontWeight="600"
               >
-                {formatSpread(spread)}
+                {formatSpread(spread)} BPS
               </text>
 
               <g fontSize="8.5" fill="#5F6368">
@@ -654,204 +654,7 @@ export default async function HomePage() {
             {/* =================================================
                 COMPACT MOBILE VERSION
             ================================================= */}
-            <svg
-              className="viz-compact"
-              viewBox="0 0 320 268"
-              xmlns="http://www.w3.org/2000/svg"
-              fontFamily="Inter, -apple-system, sans-serif"
-              style={{
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
-              <rect
-                x="0.5"
-                y="0.5"
-                width="319"
-                height="267"
-                fill="#FFFFFF"
-                stroke="#E8E8E8"
-              />
 
-              <text
-                x="20"
-                y="28"
-                fontSize="12"
-                fill="#8B1E2D"
-                letterSpacing="1.2"
-              >
-                LB · MACRO DASHBOARD
-              </text>
-
-              <line
-                x1="20"
-                y1="38"
-                x2="300"
-                y2="38"
-                stroke="#E8E8E8"
-                strokeWidth="1"
-              />
-
-              <text
-                x="20"
-                y="58"
-                fontSize="11"
-                fill="#5F6368"
-                letterSpacing="0.5"
-              >
-                U.S. TREASURY YIELD CURVE
-              </text>
-
-              {treasury ? (
-                <>
-                  <polyline
-                    points={compactCurvePoints}
-                    fill="none"
-                    stroke="#111111"
-                    strokeWidth="1.6"
-                  />
-
-                  {compactCurveRatePoints.map(
-                    ({ x, y }, index) => (
-                      <circle
-                        key={`${x}-${index}`}
-                        cx={x}
-                        cy={y}
-                        r={
-                          index ===
-                          compactCurveRatePoints.length - 1
-                            ? 4
-                            : 2.8
-                        }
-                        fill={
-                          index ===
-                          compactCurveRatePoints.length - 1
-                            ? "#8B1E2D"
-                            : "#111111"
-                        }
-                      />
-                    )
-                  )}
-                </>
-              ) : (
-                <>
-                  <line
-                    x1="20"
-                    y1="118"
-                    x2="300"
-                    y2="118"
-                    stroke="#C7C7C7"
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                  />
-
-                  <text
-                    x="160"
-                    y="122"
-                    fontSize="8"
-                    fill="#8B1E2D"
-                    textAnchor="middle"
-                  >
-                    Treasury data unavailable
-                  </text>
-                </>
-              )}
-
-              <g
-                fontSize="11"
-                fill="#5F6368"
-                textAnchor="middle"
-              >
-                <text x="20" y="188">
-                  1M
-                </text>
-
-                <text x="90" y="188">
-                  1Y
-                </text>
-
-                <text x="160" y="188">
-                  5Y
-                </text>
-
-                <text x="230" y="188">
-                  10Y
-                </text>
-
-                <text x="300" y="188">
-                  30Y
-                </text>
-              </g>
-
-              <line
-                x1="20"
-                y1="205"
-                x2="300"
-                y2="205"
-                stroke="#E8E8E8"
-                strokeWidth="1"
-              />
-
-              <text
-                x="20"
-                y="224"
-                fontSize="11"
-                fill="#5F6368"
-                letterSpacing="0.5"
-              >
-                2S10S SPREAD (BPS)
-              </text>
-
-              <rect
-                x="20"
-                y="234"
-                width="280"
-                height="8"
-                fill="#F1F1F1"
-                stroke="#E8E8E8"
-                strokeWidth="1"
-              />
-
-              <line
-                x1="160"
-                y1="230"
-                x2="160"
-                y2="246"
-                stroke="#C7C7C7"
-                strokeWidth="1"
-              />
-
-              <circle
-                cx={spreadPosition}
-                cy="238"
-                r="5.5"
-                fill="#8B1E2D"
-              />
-
-              <text
-                x={spreadPosition}
-                y="228"
-                fontSize="10"
-                fill="#8B1E2D"
-                textAnchor="middle"
-                fontWeight="600"
-              >
-                {formatSpread(spread)}
-              </text>
-
-              <g fontSize="10.5" fill="#5F6368">
-                <text x="20" y="262">
-                  −100
-                </text>
-
-                <text x="150" y="262">
-                  0
-                </text>
-
-                <text x="272" y="262">
-                  +100
-                </text>
-              </g>
-            </svg>
 
             <p className="viz-caption">
               {treasury
