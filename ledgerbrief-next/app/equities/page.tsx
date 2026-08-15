@@ -28,13 +28,15 @@ function heatColor(value: number | null) {
   if (value === null) return "#8A8A8A";
 
   if (value >= 2) return "#1B5E3F";
-  if (value >= 0.5) return "#4C8B6C";
-  if (value >= 0) return "#7B8F84";
+  if (value >= 1) return "#2E7D57";
+  if (value >= 0.3) return "#5C9878";
+  if (value >= 0) return "#879A90";
 
   if (value <= -2) return "#8B1E2D";
-  if (value <= -0.5) return "#B5697A";
+  if (value <= -1) return "#A33A4D";
+  if (value <= -0.3) return "#BF6A7A";
 
-  return "#A9838B";
+  return "#A88C93";
 }
 
 function formatUpdatedAt(value: string) {
