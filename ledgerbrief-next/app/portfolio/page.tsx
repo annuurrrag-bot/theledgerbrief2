@@ -35,7 +35,7 @@ export default function PortfolioPage() {
             className="donut"
             style={{
               background:
-                "conic-gradient(#8B1E2D 0 45%, #B65A68 45% 65%, #6F7772 65% 82%, #B79A63 82% 92%, #D8D5CF 92% 100%)",
+  "conic-gradient(#D62828 0 45%, #2563A6 45% 65%, #1F8A5B 65% 82%, #E0A11A 82% 92%, #6B7280 92% 100%)",
             }}
           ></div>
 
