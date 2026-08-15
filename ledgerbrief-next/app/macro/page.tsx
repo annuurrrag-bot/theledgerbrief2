@@ -310,88 +310,63 @@ export default async function MacroPage() {
         </div>
 
         <div
-          className="tile-grid cols-3 reveal"
-          style={{ marginBottom: "24px" }}
-        >
-          <div className="tile">
-            <span className="tile-label">
-              <div className="tile">
-  <span className="tile-label">
-    Fed Funds Rate
-  </span>
+  className="tile-grid cols-3 reveal"
+  style={{ marginBottom: "24px" }}
+>
+  <div className="tile">
+    <span className="tile-label">
+      Fed Funds Rate
+    </span>
 
-  <span className="tile-val">
-    {macro.policy.fedUpper !== null
-      ? `${macro.policy.fedUpper.toFixed(2)}%`
-      : "—"}
-  </span>
+    <span className="tile-val">
+      {macro.policy.fedUpper !== null
+        ? `${macro.policy.fedUpper.toFixed(2)}%`
+        : "—"}
+    </span>
 
-  <span
-    className="tile-chg"
-    style={{
-      color: "var(--ink-soft)",
-    }}
-  >
-    {macro.policy.fedLower !== null &&
-    macro.policy.fedUpper !== null
-      ? `Target range ${macro.policy.fedLower.toFixed(
-          2
-        )}–${macro.policy.fedUpper.toFixed(2)}%`
-      : "Policy rate unavailable"}
-  </span>
+    <span
+      className="tile-chg"
+      style={{ color: "var(--ink-soft)" }}
+    >
+      {macro.policy.fedLower !== null &&
+      macro.policy.fedUpper !== null
+        ? `Target range ${macro.policy.fedLower.toFixed(
+            2
+          )}–${macro.policy.fedUpper.toFixed(2)}%`
+        : "Policy rate unavailable"}
+    </span>
+  </div>
+
+  <div className="tile">
+    <span className="tile-label">
+      ECB Deposit Rate
+    </span>
+
+    <span className="tile-val">—</span>
+
+    <span
+      className="tile-chg"
+      style={{ color: "var(--ink-soft)" }}
+    >
+      Official ECB feed not connected yet
+    </span>
+  </div>
+
+  <div className="tile">
+    <span className="tile-label">
+      BoJ Policy Rate
+    </span>
+
+    <span className="tile-val">—</span>
+
+    <span
+      className="tile-chg"
+      style={{ color: "var(--ink-soft)" }}
+    >
+      Official BoJ feed not connected yet
+    </span>
+  </div>
 </div>
-            </span>
-
-            <span className="tile-val">
-              {macro.policy.fedUpper.toFixed(2)}%
-            </span>
-
-            <span
-              className="tile-chg"
-              style={{
-                color: "var(--ink-soft)",
-              }}
-            >
-              Target range{" "}
-              {macro.policy.fedLower.toFixed(2)}–
-              {macro.policy.fedUpper.toFixed(2)}%
-            </span>
-          </div>
-
-          <div className="tile">
-            <span className="tile-label">
-              ECB Deposit Rate
-            </span>
-
-            <span className="tile-val">—</span>
-
-            <span
-              className="tile-chg"
-              style={{
-                color: "var(--ink-soft)",
-              }}
-            >
-              Official ECB feed not connected yet
-            </span>
-          </div>
-
-          <div className="tile">
-            <span className="tile-label">
-              BoJ Policy Rate
-            </span>
-
-            <span className="tile-val">—</span>
-
-            <span
-              className="tile-chg"
-              style={{
-                color: "var(--ink-soft)",
-              }}
-            >
-              Official BoJ feed not connected yet
-            </span>
-          </div>
-        </div>
 
         <div className="with-sidebar">
           <div>
