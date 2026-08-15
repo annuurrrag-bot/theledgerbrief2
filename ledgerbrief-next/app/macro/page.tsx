@@ -2,6 +2,8 @@ import NewsletterForm from "@/components/NewsletterForm";
 import { getMacroSnapshot } from "@/lib/macro";
 import { getTreasuryCurve } from "@/lib/treasury";
 import type { Metadata } from "next";
+import { getMacroSnapshot } from "@/lib/macro";
+import { getTreasuryCurve } from "@/lib/treasury";
 
 export const metadata: Metadata = {
   title: "Macro",
@@ -19,8 +21,16 @@ function formatPct(value: number | null, digits = 1) {
 function formatSignedPoints(
   current: number | null,
   prior: number | null
-) {
-  if (current === null || prior === null) return "—";
+): {
+  text: string;
+  className: string;
+} {
+  if (current === null || prior === null) {
+    return {
+      text: "—",
+      className: "",
+    };
+  }
 
   const diff = current - prior;
 
