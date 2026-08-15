@@ -26,12 +26,46 @@ export default function PortfolioPage() {
   }}
 ></div>></div>
           <ul className="alloc-legend">
-            <li><span className="swatch" style={{background: '#111111'}}></span>Global Equities — 45%</li>
-            <li><span className="swatch" style={{background: '#8B1E2D'}}></span>Fixed Income — 20%</li>
-            <li><span className="swatch" style={{background: '#1B5E3F'}}></span>Real Assets — 17%</li>
-            <li><span className="swatch" style={{background: '#C9A24B'}}></span>Alternatives — 10%</li>
-            <li><span className="swatch" style={{background: '#B7B7B7'}}></span>Cash — 8%</li>
-          </ul>
+  <li>
+    <span
+      className="swatch"
+      style={{ background: '#8B1E2D' }}
+    ></span>
+    Global Equities — 45%
+  </li>
+
+  <li>
+    <span
+      className="swatch"
+      style={{ background: '#B65A68' }}
+    ></span>
+    Fixed Income — 20%
+  </li>
+
+  <li>
+    <span
+      className="swatch"
+      style={{ background: '#6F7772' }}
+    ></span>
+    Real Assets — 17%
+  </li>
+
+  <li>
+    <span
+      className="swatch"
+      style={{ background: '#B79A63' }}
+    ></span>
+    Alternatives — 10%
+  </li>
+
+  <li>
+    <span
+      className="swatch"
+      style={{ background: '#D8D5CF' }}
+    ></span>
+    Cash — 8%
+  </li>
+</ul>
         </div>
         <p style={{fontSize: '12.5px', color: 'var(--ink-soft)', margin: '-40px 0 56px'}}>Illustrative allocation for discussion purposes only · not a personalized recommendation.</p>
 
