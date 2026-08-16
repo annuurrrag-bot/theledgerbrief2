@@ -731,3 +731,21 @@
     display: none !important;
   }
 }
+/* FIX EMAIL INPUT TEXT */
+input[type="email"] {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+  caret-color: #111111;
+}
+
+input[type="email"]::placeholder {
+  color: #777777 !important;
+  opacity: 1;
+}
+
+input[type="email"]:-webkit-autofill,
+input[type="email"]:-webkit-autofill:hover,
+input[type="email"]:-webkit-autofill:focus {
+  -webkit-text-fill-color: #111111 !important;
+  caret-color: #111111;
+}
