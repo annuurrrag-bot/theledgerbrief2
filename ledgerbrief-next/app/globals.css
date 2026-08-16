@@ -530,7 +530,6 @@
   transition: transform 0.2s var(--ease);
 }
 
-.nav-links li.mega-open a[aria-haspopup] .chev,
 .nav-links > li:hover a[aria-haspopup] .chev,
 .nav-links > li:focus-within a[aria-haspopup] .chev {
   transform: rotate(180deg);
