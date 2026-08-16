@@ -872,3 +872,23 @@ input[type="email"]:-webkit-autofill:focus {
   -webkit-text-fill-color: #111111 !important;
   caret-color: #111111;
 }
+/* FOOTER EMAIL INPUT FIX */
+.footer-signup input[type="email"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+.footer-signup input[type="email"]::placeholder {
+  color: #8a8a8a !important;
+  -webkit-text-fill-color: #8a8a8a !important;
+  opacity: 1;
+}
+
+.footer-signup input[type="email"]:-webkit-autofill,
+.footer-signup input[type="email"]:-webkit-autofill:hover,
+.footer-signup input[type="email"]:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  box-shadow: 0 0 0 1000px #111111 inset !important;
+}
