@@ -854,25 +854,35 @@
     display: none !important;
   }
 }
-/* FIX EMAIL INPUT TEXT */
+/* ============ EMAIL INPUT COLORS ============ */
+
+/* Light-background email inputs */
 input[type="email"] {
-  color: #111111 !important;
-  -webkit-text-fill-color: #111111 !important;
+  color: #111111;
+  -webkit-text-fill-color: #111111;
   caret-color: #111111;
 }
 
 input[type="email"]::placeholder {
-  color: #777777 !important;
+  color: #777777;
+  -webkit-text-fill-color: #777777;
   opacity: 1;
 }
 
-input[type="email"]:-webkit-autofill,
-input[type="email"]:-webkit-autofill:hover,
-input[type="email"]:-webkit-autofill:focus {
-  -webkit-text-fill-color: #111111 !important;
-  caret-color: #111111;
+/* Dark CTA email input */
+.inline-cta input[type="email"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
 }
-/* FOOTER EMAIL INPUT FIX */
+
+.inline-cta input[type="email"]::placeholder {
+  color: #8a8a8a !important;
+  -webkit-text-fill-color: #8a8a8a !important;
+  opacity: 1;
+}
+
+/* Footer email input */
 .footer-signup input[type="email"] {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
@@ -885,6 +895,18 @@ input[type="email"]:-webkit-autofill:focus {
   opacity: 1;
 }
 
+/* Autofill on light backgrounds */
+input[type="email"]:-webkit-autofill,
+input[type="email"]:-webkit-autofill:hover,
+input[type="email"]:-webkit-autofill:focus {
+  -webkit-text-fill-color: #111111;
+  caret-color: #111111;
+}
+
+/* Autofill on dark backgrounds */
+.inline-cta input[type="email"]:-webkit-autofill,
+.inline-cta input[type="email"]:-webkit-autofill:hover,
+.inline-cta input[type="email"]:-webkit-autofill:focus,
 .footer-signup input[type="email"]:-webkit-autofill,
 .footer-signup input[type="email"]:-webkit-autofill:hover,
 .footer-signup input[type="email"]:-webkit-autofill:focus {
