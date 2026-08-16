@@ -506,7 +506,10 @@
   position: relative;
 }
 
-/* Keeps a continuous hover area between Research and the dropdown */
+/*
+  Extends the Research hover area downward so
+  the menu does not disappear while moving the mouse.
+*/
 .nav-links > li:has(a[aria-haspopup]) {
   padding-bottom: 22px;
   margin-bottom: -22px;
@@ -530,25 +533,21 @@
   transition: transform 0.2s var(--ease);
 }
 
-.nav-links > li:hover a[aria-haspopup] .chev,
-.nav-links > li:focus-within a[aria-haspopup] .chev {
+/* Rotate arrow only while hovering */
+.nav-links > li:hover a[aria-haspopup] .chev {
   transform: rotate(180deg);
 }
 
 .mega-panel {
   position: absolute;
-
-  /* IMPORTANT: no gap between nav item and dropdown */
   top: 100%;
-
   left: 50%;
   transform: translateX(-50%);
 
   width: min(760px, 84vw);
 
-  background: #fff;
+  background: #ffffff;
   border: 1px solid var(--border);
-
   box-shadow: 0 24px 60px rgba(17, 17, 17, 0.12);
 
   padding: 36px;
@@ -558,26 +557,21 @@
 
   display: none;
 
-  opacity: 0;
-  translate: 0 6px;
-
-  transition:
-    opacity 0.18s var(--ease),
-    translate 0.18s var(--ease);
-
   z-index: 300;
 }
 
-/* Opens from JS click state, mouse hover, or keyboard focus */
-.nav-links li.mega-open .mega-panel,
-.nav-links > li:hover .mega-panel,
-.nav-links > li:focus-within .mega-panel {
+/*
+  Desktop behavior:
+  open ONLY while the mouse is over Research
+  or the dropdown itself.
+*/
+.nav-links > li:hover .mega-panel {
   display: grid;
-  opacity: 1;
-  translate: 0 0;
 }
 
-/* Extra invisible hover bridge for safety */
+/*
+  Invisible bridge between Research and the panel.
+*/
 .mega-panel::before {
   content: "";
   position: absolute;
@@ -601,7 +595,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-
   display: flex;
   flex-direction: column;
   gap: 13px;
